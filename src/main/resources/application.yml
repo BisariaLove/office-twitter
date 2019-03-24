@@ -4,8 +4,9 @@ spring:
 
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/office-twitter?characterEncoding=utf-8
-    username: root
-    password: "love220690"
+    url: jdbc:mysql://leo-test-db.cac89ytu2lie.us-east-1.rds.amazonaws.com/leo_test-database?characterEncoding=utf-8
+    username: leo_dev
+    password: Hello12345
     test-on-borrow: true
     validation-query: select 1 from dual
+
