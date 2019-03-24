@@ -10,6 +10,7 @@ import com.leo.solutions.officetwitter.domain.UserTweetsResponse;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class TweetsService {
@@ -22,10 +23,13 @@ public class TweetsService {
     }
 
     public UserTweetsResponse latestTweets(int user, int count){
+        List<TweetModel> result = tweetDao.getTweets(user, count);
+
         UserTweetsResponse response = new UserTweetsResponse();
-        response.setCount(count);
+
+        response.setCount(result.size());
         response.setUserId(user);
-        response.setTweets(tweetDao.getTweets(user, count));
+        response.setTweets(result);
 
         return response;
     }
