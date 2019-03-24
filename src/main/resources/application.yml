@@ -1,0 +1,11 @@
+spring:
+  profiles:
+    active: default,development
+
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/office-twitter?characterEncoding=utf-8
+    username: root
+    password: "love220690"
+    test-on-borrow: true
+    validation-query: select 1 from dual
