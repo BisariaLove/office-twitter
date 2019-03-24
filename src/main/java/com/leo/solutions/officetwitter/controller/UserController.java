@@ -3,10 +3,12 @@ package com.leo.solutions.officetwitter.controller;
  * @author love.bisaria on 23/03/19
  */
 
+import com.leo.solutions.officetwitter.domain.UserDashboardModel;
 import com.leo.solutions.officetwitter.domain.UserFollowerResponse;
 import com.leo.solutions.officetwitter.domain.UserInfoModel;
 import com.leo.solutions.officetwitter.exception.ApiException;
 import com.leo.solutions.officetwitter.service.FollowerService;
+import com.leo.solutions.officetwitter.service.UserDashBoardService;
 import com.leo.solutions.officetwitter.service.UserInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,9 @@ public class UserController {
 
     @Inject
     private FollowerService followerService;
+
+    @Inject
+    private UserDashBoardService userDashBoardService;
 
     @RequestMapping(
             method = { RequestMethod.POST},
@@ -66,7 +71,14 @@ public class UserController {
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public UserFollowerResponse getFollowers(HttpServletRequest request
                                             ,@PathVariable(value = "id") int id){
-        return followerService.ggetFollowers(id);
+        return followerService.getFollowers(id);
     }
 
+    @RequestMapping(value="/{id}/dashboard",
+            method = { RequestMethod.GET},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public UserDashboardModel getUserDashboard(HttpServletRequest request
+                            ,@PathVariable(value="id", required = true)int id){
+        return userDashBoardService.getUserDashBoard(id);
+    }
 }

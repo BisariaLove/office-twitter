@@ -22,7 +22,7 @@ public class FollowerService {
         return followedDao.addFollower(followerModel);
     }
 
-    public UserFollowerResponse ggetFollowers(int followedId){
+    public UserFollowerResponse getFollowers(int followedId){
         UserFollowerResponse response = new UserFollowerResponse();
         List<UserInfoModel> followers = followedDao.getFollowers(followedId);
 

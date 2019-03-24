@@ -4,7 +4,6 @@ package com.leo.solutions.officetwitter.dao;
  */
 
 import com.leo.solutions.officetwitter.domain.FollowersInfoModel;
-import com.leo.solutions.officetwitter.domain.TweetModel;
 import com.leo.solutions.officetwitter.domain.UserInfoModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

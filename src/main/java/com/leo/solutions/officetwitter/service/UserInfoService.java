@@ -31,4 +31,8 @@ public class UserInfoService {
         }
         return userDao.getUserByHandle(handle);
     }
+
+    public UserInfoModel getUserById(int id){
+        return userDao.getUSerById(id);
+    }
 }
