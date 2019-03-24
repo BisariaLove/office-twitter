@@ -52,7 +52,6 @@ public class UserController {
             throw new ApiException("either email or handle should be present", HttpStatus.BAD_REQUEST.value());
         }
 
-
         return userInfoService.getUser(email, handle);
     }
 }

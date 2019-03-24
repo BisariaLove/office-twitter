@@ -1,3 +1,6 @@
+* To run the service:
+mvn clean package ; mvn  spring-boot:run -e  -Dspring.profiles.active=default
+
 * Get user by handle : 
 curl -XGET "http://localhost:8080/users?handle=lbisaria"
 
