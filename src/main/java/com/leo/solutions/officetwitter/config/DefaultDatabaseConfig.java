@@ -23,7 +23,7 @@ public class DefaultDatabaseConfig{
     public static final String MAIN_DATASOURCE = "mainDbDatasource";
     public static final String MAIN_JDBCTEMPLATE = "mainDbJdbcTemplate";
 
-    @Value("${spring.datasource.url}")
+    @Value("${spring.datasource.jdbc-url}")
     private String databaseUrl;
 
     @Bean(name=MAIN_DATASOURCE)

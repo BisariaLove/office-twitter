@@ -4,7 +4,7 @@ spring:
 
   datasource:
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://leo-test-db.cac89ytu2lie.us-east-1.rds.amazonaws.com/leo_test-database?characterEncoding=utf-8
+    jdbc-url: jdbc:mysql://leo-test-db.cac89ytu2lie.us-east-1.rds.amazonaws.com/leo_test_database?characterEncoding=utf-8
     username: leo_dev
     password: Hello12345
     test-on-borrow: true

@@ -6,6 +6,7 @@ package com.leo.solutions.officetwitter.exception;
 import com.leo.solutions.officetwitter.domain.ErrorResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -24,11 +25,18 @@ public class GlobalDefaultExceptionHandler {
 
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(EmptyResultDataAccessException.class)
+    public ResponseEntity<ErrorResponse> handleEmptyResultDataAccessException(Exception ex, HttpServletRequest request){
+        log.error("Exception happened: {}", ex.getMessage());
+        return resolveException("Not Found", 404, "");
+
+    }
+
+    /*@ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> unknownException(Exception ex){
         log.error("Exception happened: {}", ex.getMessage());
         return resolveException("Unknown Exception", 500, "");
-    }
+    }*/
 
     private ResponseEntity<ErrorResponse> resolveException(String message, int httpCode, String hint) {
         return ResponseEntity.status(httpCode).body(new ErrorResponse(httpCode, message,  hint));
