@@ -3,12 +3,15 @@ package com.leo.solutions.officetwitter.controller;
  * @author love.bisaria on 23/03/19
  */
 
+import com.leo.solutions.officetwitter.domain.UserFollowerResponse;
 import com.leo.solutions.officetwitter.domain.UserInfoModel;
 import com.leo.solutions.officetwitter.exception.ApiException;
+import com.leo.solutions.officetwitter.service.FollowerService;
 import com.leo.solutions.officetwitter.service.UserInfoService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +27,9 @@ public class UserController {
 
     @Inject
     private UserInfoService userInfoService;
+
+    @Inject
+    private FollowerService followerService;
 
     @RequestMapping(
             method = { RequestMethod.POST},
@@ -54,4 +60,13 @@ public class UserController {
 
         return userInfoService.getUser(email, handle);
     }
+
+    @RequestMapping(value="/{id}/followers",
+            method = { RequestMethod.GET},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public UserFollowerResponse getFollowers(HttpServletRequest request
+                                            ,@PathVariable(value = "id") int id){
+        return followerService.ggetFollowers(id);
+    }
+
 }

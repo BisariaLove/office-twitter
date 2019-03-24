@@ -22,5 +22,6 @@ CREATE TABLE `followers` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`followed` INT(11) NOT NULL,
 	`follower` INT(11),
+	`record_date` datetime NOT NULL,
 	PRIMARY KEY (`id`)
 );
