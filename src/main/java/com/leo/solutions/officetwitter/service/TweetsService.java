@@ -10,7 +10,6 @@ import com.leo.solutions.officetwitter.domain.UserTweetsResponse;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.List;
 
 @Service
 public class TweetsService {
@@ -19,7 +18,7 @@ public class TweetsService {
     private TweetDao tweetDao;
 
     public TweetModel addTweet(TweetModel tweet){
-        return tweetDao.insertTweet(addTweet(tweet));
+        return tweetDao.insertTweet(tweet);
     }
 
     public UserTweetsResponse latestTweets(int user, int count){

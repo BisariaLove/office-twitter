@@ -4,7 +4,6 @@ package com.leo.solutions.officetwitter.dao;
  */
 
 import com.leo.solutions.officetwitter.domain.TweetModel;
-import com.leo.solutions.officetwitter.domain.UserInfoModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.RowMapper;
@@ -18,6 +17,7 @@ import javax.annotation.Resource;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,14 +35,20 @@ public class TweetDao {
     private static final String ADD_TWEET = "INSERT INTO tweets(user_id, tweet, tweet_date)\n" +
             "VALUES(:userId, :tweet, :tweetDate)";
 
-    private static final String GET_TWEETS = "";
+    private static final String GET_LATEST_TWEET = "SELECT * FROM tweets\n" +
+            "where user_id = :userId\n" +
+            "ORDER BY tweet_date DESC\n" +
+            "LIMIT :count";
 
     public TweetModel insertTweet(TweetModel tweetModel){
 
         Map<String, Object> params = new HashMap<>();
         params.put("userId", tweetModel.getUserId());
         params.put("tweet", tweetModel.getTweet());
-        params.put("tweetDate", tweetModel.getDateTime());
+
+        Date curDate = new Date();
+
+        params.put("tweetDate", curDate);
 
         MapSqlParameterSource source = new MapSqlParameterSource();
         source.addValues(params);
@@ -51,14 +57,17 @@ public class TweetDao {
         jdbcTemplate.update(ADD_TWEET, source, keyHolder);
 
         tweetModel.setId(keyHolder.getKey().intValue());
+        tweetModel.setDateTime(curDate);
         return tweetModel;
     }
 
-    public List<TweetModel> getTweets(int id, int num){
+    public List<TweetModel> getTweets(int id, int count){
 
-        Map<String, String> params = new HashMap<>();
+        Map<String, Object> params = new HashMap<>();
+        params.put("userId", id);
+        params.put("count", count);
 
-        return jdbcTemplate.query(GET_TWEETS, params, new TweetRowMapper());
+        return jdbcTemplate.query(GET_LATEST_TWEET, params, new TweetRowMapper());
     }
 
     public static class TweetRowMapper implements RowMapper<TweetModel>{

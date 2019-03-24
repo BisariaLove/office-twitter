@@ -95,4 +95,7 @@ public class TweetModel {
             return new TweetModel(this);
         }
     }
+
+    public TweetModel() {
+    }
 }

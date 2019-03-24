@@ -8,7 +8,6 @@ import com.leo.solutions.officetwitter.domain.TweetModel;
 import com.leo.solutions.officetwitter.domain.UserTweetsResponse;
 import com.leo.solutions.officetwitter.service.TweetsService;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -34,7 +33,7 @@ public class TweetsController {
 
     }
 
-    @RequestMapping(
+    @RequestMapping(value="/latest",
             method = { RequestMethod.GET},
             produces = {MediaType.APPLICATION_JSON_VALUE})
     public UserTweetsResponse getUserTweets(HttpServletRequest request
