@@ -13,6 +13,14 @@ CREATE TABLE `tweets` (
 	`id` INT(11) NOT NULL AUTO_INCREMENT,
 	`user_id` INT(11) NOT NULL,
 	`tweet` VARCHAR(256) NOT NULL,
-	`tweet_data` DATETIME NOT NULL,
+	`tweet_date` DATETIME NOT NULL,
+	PRIMARY KEY (`id`)
+);
+
+
+CREATE TABLE `followers` (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`followed` INT(11) NOT NULL,
+	`follower` INT(11),
 	PRIMARY KEY (`id`)
 );

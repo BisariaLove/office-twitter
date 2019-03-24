@@ -1,4 +1,4 @@
-package com.leo.solutions.officetwitter;
+package com.leo.solutions.officetwitter.controller;
 /*
  * @author love.bisaria on 23/03/19
  */

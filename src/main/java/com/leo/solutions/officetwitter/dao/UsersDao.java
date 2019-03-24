@@ -3,11 +3,9 @@ package com.leo.solutions.officetwitter.dao;
  * @author love.bisaria on 23/03/19
  */
 
-import com.leo.solutions.officetwitter.config.DefaultDatabaseConfig;
 import com.leo.solutions.officetwitter.domain.UserInfoModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
