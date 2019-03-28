@@ -32,13 +32,4 @@ public class TweetsController {
         return tweetsService.addTweet(tweet);
 
     }
-
-    @RequestMapping(value="/latest",
-            method = { RequestMethod.GET},
-            produces = {MediaType.APPLICATION_JSON_VALUE})
-    public UserTweetsResponse getUserTweets(HttpServletRequest request
-                                            ,@RequestParam(value = "user", required = true)int id
-                                            ,@RequestParam(value = "count", required = true)int count){
-        return tweetsService.latestTweets(id, count);
-    }
 }

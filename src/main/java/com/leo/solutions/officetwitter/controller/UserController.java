@@ -6,8 +6,10 @@ package com.leo.solutions.officetwitter.controller;
 import com.leo.solutions.officetwitter.domain.UserDashboardModel;
 import com.leo.solutions.officetwitter.domain.UserFollowerResponse;
 import com.leo.solutions.officetwitter.domain.UserInfoModel;
+import com.leo.solutions.officetwitter.domain.UserTweetsResponse;
 import com.leo.solutions.officetwitter.exception.ApiException;
 import com.leo.solutions.officetwitter.service.FollowerService;
+import com.leo.solutions.officetwitter.service.TweetsService;
 import com.leo.solutions.officetwitter.service.UserDashBoardService;
 import com.leo.solutions.officetwitter.service.UserInfoService;
 import org.apache.commons.lang3.StringUtils;
@@ -35,6 +37,9 @@ public class UserController {
 
     @Inject
     private UserDashBoardService userDashBoardService;
+
+    @Inject
+    private TweetsService tweetsService;
 
     @RequestMapping(
             method = { RequestMethod.POST},
@@ -72,6 +77,20 @@ public class UserController {
     public UserFollowerResponse getFollowers(HttpServletRequest request
                                             ,@PathVariable(value = "id") int id){
         return followerService.getFollowers(id);
+    }
+
+    @RequestMapping(value="/{id}/feed",
+            method = { RequestMethod.GET},
+            produces = {MediaType.APPLICATION_JSON_VALUE})
+    public UserTweetsResponse getUserFeed(HttpServletRequest request
+            , @PathVariable(value = "id") int id
+            , @RequestParam(name="count", required= false) Integer count){
+
+        if(count==null){
+            count =100;
+        }
+
+        return tweetsService.latestTweets(id, count);
     }
 
     @RequestMapping(value="/{id}/dashboard",
